@@ -1,0 +1,49 @@
+%body
+  .flash-box
+  .wrapper
+    .chat-side
+      .side-header
+        .side-header__box
+          %p.side-header__box__name
+            東野裕輔
+          %ul.side-header__box__menu
+            %li.new-group
+              = link_to '#' do
+                = fa_icon 'car', class: 'icon'
+            %li.edit-user
+              = link_to '#' do
+                = fa_icon 'train', class: 'icon'
+      .groups
+        .group
+          %p.group__group-name
+            chatspace２周目です
+          %p.group__lastest-message
+            ２周目の方が楽しく実装できます
+    .chat-main   
+      .main-header
+        .main-header__left
+          .main-header__left__group
+            SUMPLE
+          .main-header__left__member
+            メンバー：メンバー
+        .main-header__edit-btn
+          = link_to '#' do
+            = fa_icon 'car'
+      .messeges
+        .message
+          .message__info
+            .message__info__member
+              東野裕輔
+            .message__info__date
+              2019.xxxxxx
+          .message__text
+            chatspaceの２周目をしています
+      .form
+        %form
+          %input.form__message
+          .form__mask
+            %label.form__mask__image
+              = fa_icon 'picture-o', class: 'icon'
+              %input.hidden{type: 'file'}
+          %input.form__submit{type: 'submit' , value:'送信'}
+

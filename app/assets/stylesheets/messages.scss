@@ -1,0 +1,161 @@
+.wrapper{
+  width:100vw;
+  display:flex;
+  color:black;
+}
+
+.chat-side{
+  width:300px;
+  height:100vh;
+}
+
+.chat-main {
+  width: calc(100vw - 300px);
+  height:100vh;
+
+}
+
+// ①
+.side-header{
+  background-color:orange;
+  height: 100px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  &__box{
+    height:24px;
+    width:260px;
+    display: flex;
+    justify-content: space-between;
+    &__name{
+      font-weight:bold;
+      font-size:16px;
+    }
+    &__menu{
+      display: flex;
+      .icon{
+        font-size:30px;
+        color: white;
+        padding-left:30px;
+      }
+    }
+  }
+}
+
+// ②
+.groups{
+  height: calc(100vh - 100px);
+  background-color :pink;
+  overflow:scroll;
+    .group{
+      margin-bottom:40px;
+      padding:20px 20px 0;
+    &__group-name{
+      font-size: 15px;
+      margin-bottom: 5px;
+    }
+    &__lastest-message{
+      font-size:11px;
+    }
+  }
+}
+
+// ③
+.main-header{
+  height: 100px;
+  background-color:pink;
+  padding: 0 40px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: solid 1px #eee;
+  overflow: scroll;
+  &__left{
+    margin-top: 35px;
+    &__group{
+      font-size: 20px;
+      color: #333;
+      margin-bottom: 15px;
+    }
+    &__member{
+      font-size: 12px;
+      color: #999999;
+    }
+  }
+  &__edit-btn{
+    height: 40px;
+    line-height: 40px;
+    padding: 0 20px;
+    margin-top: 30px;
+    border: solid 1px #38aef0;
+    position: absolute;
+    right: 40px;
+  }
+}
+
+// ④
+.messeges{
+  height: calc(100vh - 190px);
+  padding: 46px 40px;
+  background-color: #fafafa;
+  overflow: scroll;
+  box-sizing:border-box;
+  .message{
+    padding-bottom: 40px;
+    &__info{
+      display:flex;
+      margin-bottom: 10px;
+      &__member{
+        color: #434a54;
+        font-size: 16px;
+        font-weight: bold;
+      }
+      &__date{
+        color: #999999;
+        font-size: 12px;
+        margin-left: 10px;
+      }
+    }
+    &__text{
+      color: #434a54;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+  }
+}
+
+// ⑤
+.form {
+  background-color:orange;
+  height: 90px;
+  padding: 20px 50px 20px 40px;
+  box-sizing: border-box;
+  &__message {
+    border: none;
+    float: left;
+    height: 50px;
+    width: calc(100% - 150px);
+  }
+  &__mask {
+    background-color:white;
+    float: left;
+    height: 50px;
+    padding-right: 10px;
+    &__image {
+      font-size: 20px;
+      line-height: 50px;
+    }
+    .hidden {
+      display: none;
+    }
+  }
+  &__submit {
+    background-color: light_blue;
+    border: none;
+    color:blue;
+    float: right;
+    font-size: 16px;
+    height: 50px;
+    margin-left: 15px;
+    padding: 0 30px;
+  }
+}
