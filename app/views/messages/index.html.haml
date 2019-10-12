@@ -5,13 +5,13 @@
       .side-header
         .side-header__box
           %p.side-header__box__name
-            東野裕輔
+            = current_user.name
           %ul.side-header__box__menu
             %li.new-group
               = link_to '#' do
                 = fa_icon 'car', class: 'icon'
             %li.edit-user
-              = link_to '#' do
+              = link_to edit_user_path(current_user) do
                 = fa_icon 'train', class: 'icon'
       .groups
         .group
