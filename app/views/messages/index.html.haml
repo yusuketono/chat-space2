@@ -20,7 +20,7 @@
               .group__group-name
                 = group.name
               %p.group__lastest-message
-                メッセージはまだありません。
+                = group.show_last_message
     .chat-main   
       .main-header
         .main-header__left
@@ -29,23 +29,16 @@
           .main-header__left__member
             メンバー：メンバー
         .main-header__edit-btn
-          = link_to '#' do
+          = link_to edit_group_path(@group) do
             = fa_icon 'car'
       .messeges
-        .message
-          .message__info
-            .message__info__member
-              東野裕輔
-            .message__info__date
-              2019.xxxxxx
-          .message__text
-            chatspaceの２周目をしています
+        = render @messages
       .form
-        %form
-          %input.form__message
+        = form_for [@group, @message] do |f|
+          = f.text_field :content, class: 'form__message', placeholder: 'type a message'
           .form__mask
-            %label.form__mask__image
+            = f.label :image, class: 'form__mask__image' do
               = fa_icon 'picture-o', class: 'icon'
-              %input.hidden{type: 'file'}
-          %input.form__submit{type: 'submit' , value:'送信'}
+              = f.file_field :image, class: 'hidden'
+          = f.submit 'Send', class: 'form__submit'
 
