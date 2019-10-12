@@ -5,20 +5,22 @@
       .side-header
         .side-header__box
           %p.side-header__box__name
-            東野裕輔
+            = current_user.name
           %ul.side-header__box__menu
             %li.new-group
-              = link_to '#' do
+              = link_to new_group_path do
                 = fa_icon 'car', class: 'icon'
             %li.edit-user
-              = link_to '#' do
+              = link_to edit_user_path(current_user) do
                 = fa_icon 'train', class: 'icon'
       .groups
         .group
-          %p.group__group-name
-            chatspace２周目です
-          %p.group__lastest-message
-            ２周目の方が楽しく実装できます
+          - current_user.groups.each do |group|
+            = link_to group_messages_path(group) do
+              .group__group-name
+                = group.name
+              %p.group__lastest-message
+                メッセージはまだありません。
     .chat-main   
       .main-header
         .main-header__left
