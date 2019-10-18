@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
 def index
   @users = User.search_for_group(params)
+  # binding.pry
   respond_to do |format|
     format.html
     format.json

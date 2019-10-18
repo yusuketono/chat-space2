@@ -1,8 +1,40 @@
 $(document).on('turbolinks:load', function(){
+  function appendUser (user) {
+    const html = `<div class="chat-group-user clearfix">
+                  <p class="chat-group-user__name">${user.name}</p>
+                  <a class="user-search-add chat-group-user__btn chat-group-user__btn--add" data-user-id="${user.id}" data-user-name="${user.name}">追加</a>
+                </div>`
+    user_list.append(html);
+    // console.log(html);
+  }
 
-  $('#user-search-field').on('input', function(e){
+  function appendMessage (message) {
+    const html = `<div class="chat-group-user clearfix">
+                  <p class="chat-group-user__name">${message}</p>
+                </div>`
+    user_list.append(html);
+  }
+
+  function addUser (name, id) {
+    const html = `<div class='chat-group-user clearfix js-chat-member' id='chat-group-user-${id}'>
+                  <input name='group[user_ids][]' type='hidden' value='${id}'>
+                  <p class='chat-group-user__name'>${name}</p>
+                  <a class='user-search-remove chat-group-user__btn chat-group-user__btn--remove js-remove-btn'>削除</a>
+                </div>`
+    $('.js-add-user').append(html);
+  }
+
+  let userIds = []; 
+  const user_list = $('#user-search-result'); 
+
+  $('.js-chat-member').each(function(index, el) {
+    userIds.push(el.getAttribute('id'));
+  });
+
+  $('#user-search-field').on('input',function(e){
     e.preventDefault();
-    let input = $('#user-search-field').val();
+    const input = $('#user-search-field').val();
+    // console.log(input);
     if (input.length == 0) {
       user_list.empty();
       return
@@ -11,7 +43,24 @@ $(document).on('turbolinks:load', function(){
       type: 'GET',
       url: '/users',
       dataType: 'json',
-      data: {keyword:input},
+      data: { keyword: input,
+              user_ids: userIds },
+    })
+    .done(function(users){
+      user_list.empty();
+      if(users.length !== 0) {
+        users.forEach(function(user) {
+          appendUser (user);
+        })
+      } else{
+        appendMessage('一致するユーザーが見つかりません');
+      }
+    })
+    .fail(function(){
+      alert("ユーザー検索に失敗しました")
     })
   });
+
+
+  
 });
