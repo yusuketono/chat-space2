@@ -5,7 +5,6 @@ $(document).on('turbolinks:load', function(){
                   <a class="user-search-add chat-group-user__btn chat-group-user__btn--add" data-user-id="${user.id}" data-user-name="${user.name}">追加</a>
                 </div>`
     user_list.append(html);
-    // console.log(html);
   }
 
   function appendMessage (message) {
@@ -60,7 +59,19 @@ $(document).on('turbolinks:load', function(){
       alert("ユーザー検索に失敗しました")
     })
   });
-
-
   
+  user_list.on('click', '.chat-group-user__btn--add', function() {
+    const userName = $(this).attr('data-user-name');
+    const userId   = $(this).attr('data-user-id');
+
+    userIds.push(userId);
+    $(this).parent().remove();
+    addUser(userName, userId);
+  })
+
+  $('.js-add-user').on('click', '.js-remove-btn', function() {
+    const removedUserId = $(this).siblings('input').val();
+    userIds = userIds.filter(id => id != removedUserId);
+    $(this).parent().remove();
+  }) 
 });
